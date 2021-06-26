@@ -40,7 +40,8 @@ public class CassandraUDPServer {
                             .subscribe();
                     return Flux.never();
                 })
-                .port(8888) //UDP Server port
+                .host("0.0.0.0") //Temporarily set this host for accepting UDP request from IoT Device
+                .port(8080) //UDP Server port
                 .doOnBound(conn -> conn
                         .addHandler("decoder", udpDecoderHandler)
                         .addHandler("encoder", udpEncoderHandler)
